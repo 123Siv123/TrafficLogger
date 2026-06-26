@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3 class="mb-4">Dashboard</h3>
+
+<div class="row g-4">
+
+    <div class="col-md-4">
+        <div class="card p-4 text-center text-white bg-dark">
+            <h6>Total Violations</h6>
+            <h2>{{ total }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4 text-center text-white bg-success">
+            <h6>Paid</h6>
+            <h2>{{ paid }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4 text-center text-white bg-danger">
+            <h6>Unpaid</h6>
+            <h2>{{ unpaid }}</h2>
+        </div>
+    </div>
+
+</div>
+
+<div class="row mt-5 justify-content-center">
+    <div class="col-md-5">
+        <div class="card p-4 text-center">
+            <h5 class="mb-3">Payment Status</h5>
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('myChart');
+
+if (ctx) {
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Paid', 'Unpaid'],
+            datasets: [{
+                data: [{{ paid or 0 }}, {{ unpaid or 0 }}],
+                backgroundColor: ['green', 'red']
+            }]
+        }
+    });
+}
+</script>
+
+{% endblock %}

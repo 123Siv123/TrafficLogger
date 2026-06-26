@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3 class="mb-4">Add Violation</h3>
+
+<div class="card card-custom p-4">
+
+<form method="POST" enctype="multipart/form-data"></form>
+<input type="file" name="image" class="form-control">
+
+<div class="col-md-6">
+<input class="form-control" name="vehicle" placeholder="Vehicle Number">
+</div>
+
+<div class="col-md-6">
+<input class="form-control" name="type" placeholder="Violation Type">
+</div>
+
+<div class="col-md-6">
+<input class="form-control" name="location" placeholder="Location">
+</div>
+
+<div class="col-md-6">
+<input type="date" class="form-control" name="date">
+</div>
+
+<div class="col-md-6">
+<input class="form-control" name="fine" placeholder="Fine Amount">
+</div>
+
+<div class="col-12">
+<button class="btn btn-success px-4">Submit</button>
+<button type="submit" class="btn btn-success">Submit</button>
+</div>
+<input name="vehicle" class="form-control" placeholder="Vehicle Number">
+<input name="type" class="form-control" placeholder="Violation Type">
+<input name="location" class="form-control" placeholder="Location">
+<input name="date" type="date" class="form-control">
+<input name="fine" class="form-control" placeholder="Fine Amount">
+<input type="file" name="image" class="form-control">
+
+</form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="w-100" style="max-width: 1100px;">
+
+    <h2 class="mb-4 text-center">🔍 Search Violations</h2>
+
+    <form method="POST" class="d-flex justify-content-center mb-4">
+        <input class="form-control w-50 me-2" name="vehicle" placeholder="Enter Vehicle Number">
+        <button class="btn btn-primary px-4">Search</button>
+    </form>
+
+    <div class="card p-3">
+        <table class="table table-hover text-center">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Vehicle</th>
+                    <th>Status</th>
+                    <th>QR</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for v in data %}
+                <tr>
+                    <td>{{ v.id }}</td>
+                    <td>{{ v.vehicle_number }}</td>
+                    <td>
+                        {% if v.status == "Unpaid" %}
+                            <span class="badge bg-danger">Unpaid</span>
+                        {% else %}
+                            <span class="badge bg-success">Paid</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <button class="btn btn-dark btn-sm" onclick="showQR('{{ v.id }}')">
+                            View QR
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+
+<script>
+function showQR(id){
+    document.getElementById("qrImage").src = "/static/qr_codes/" + id + ".png";
+    new bootstrap.Modal(document.getElementById('qrModal')).show();
+}
+</script>
+
+{% endblock %}
